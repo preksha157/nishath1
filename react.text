@@ -1,0 +1,57 @@
+import Reacct,{useState}from "react"
+import ReactDOM from 'react-dom/client';
+const Forms=()=>{
+    const[name,setName]=useState('');
+    const[email,setEmail]=useState('');
+    const[pass,setPass]=useState('');
+    const[submit,setsubmit]=useState(false);
+    const handleName=(e)=>{
+        setName(e.targt.value);
+    };
+    const handleEmail=(e)=>{
+        setEmail(e.targt.value);
+    };
+    const handlePass=(e)=>{
+         setPass(e.targt.value);
+    };
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        if (name===''){
+            alert("enter your user name");
+        }
+        else if(email===''){
+            alert("enter your email");
+        }
+        else if(pass===''){
+            alert("enter your password");
+        }
+        else if(name===''//email====''//pass===''){
+            alert("please fill in all fields");
+        }
+        else
+        {
+            setsubmit(true);
+        }
+    }
+    return(
+        <form onSubmit={handleSubmit}>
+            <h1>Registration form</h1>
+            {submit&&<h1> user{name}Registration successfully</h1>}
+            <div>
+                <label> Name </label>
+                <input type="text" id="name" value={name}onChange={handleName}/>
+            </div>
+            <div>
+            <label> Email </label>
+            <input type="text" id="email" value={email}onChange={handleEmail}/>
+            </div>
+            <div>
+            <label> Password </label>
+            <input type="text id" id="pass" value={pass}onChange={handlePass}/>
+            </div>
+            <button type="Submit">Submit</button>
+            </form>
+    );
+}
+const root=ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Forms/>);
